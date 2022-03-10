@@ -17,7 +17,7 @@ export default function CategoryListItem(props) {
             <Text style={styless.title}>
                 Đồ uống
             </Text>
-
+            <View style={styless.food_view}>
             <FlatList
                 data={datas}
                 renderItem={({ item, index, separators }) => (
@@ -38,11 +38,14 @@ export default function CategoryListItem(props) {
                 </View>
                 )}
             />
+            </View>
+            
         </View>
         <View style={styless.food}>
             <Text style={styless.title}>
                 Đồ ăn
             </Text>
+            <View style = {styless.food_view}>
             <FlatList
                 data={datas}
                 renderItem={({ item, index, separators }) => (
@@ -63,8 +66,8 @@ export default function CategoryListItem(props) {
                 </View>
                 )}
             />
+            </View>
         </View>
-
         {/* <Image style={styless.CategoryListItemImage} source={require('../assets/images/iconc.png')} /> */}
     </View >
 }
@@ -144,8 +147,10 @@ const styless = StyleSheet.create({
     item_1: {
         flexDirection: 'row',
         flexWrap: "wrap"
+    },
+    food_view: {
+        height : "70%"
     }
-
 
 });
 
