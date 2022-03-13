@@ -2,7 +2,8 @@ import React from "react";
 import { FlatList, Image, StyleSheet } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
-import favicom from "../assets/images/icon.png"
+import favicom from "../assets/images/icon.png";
+import avatarEats from "../assets/images/Group.png"
 
 export default function CategoryListItem(props) {
     return <View style={styless.container}>
@@ -12,6 +13,8 @@ export default function CategoryListItem(props) {
             </Text>
         </View>
         <View style={styless.logo}>
+            <Image source={avatarEats} style={styless.avatarHeader}>
+            </Image>
         </View>
         <View style={styless.drink}>
             <Text style={styless.title}>
@@ -22,20 +25,23 @@ export default function CategoryListItem(props) {
                 data={datas}
                 renderItem={({ item, index, separators }) => (
                     <View style={styless.item}>
-                    <View style={styless.item_1}>
-                        <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
-                        </Image>
-                        <View>
-                            <Text>{item.title}</Text>
-                            <Text>{item.price}đ</Text>
-                            <Text>{index.quantity} sản phẩm có sẵn</Text>
+                        <View style={styless.item_1}>
+                            <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
+                            </Image>
+                            <View style={styless.item_view}>
+                                <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
+                                <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
+                            </View>
+                        </View>
+
+                        <View style={styless.icon_view}>
+                            <View style={styless.iconAdd}>
+                                <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                </Image>
+                            </View>
                         </View>
                     </View>
-                    <View style={styless.iconAdd}>
-                        <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>   
-                        </Image>
-                    </View>
-                </View>
                 )}
             />
         </View>
@@ -47,25 +53,31 @@ export default function CategoryListItem(props) {
                 data={datas}
                 renderItem={({ item, index, separators }) => (
                     <View style={styless.item}>
-                    <View style={styless.item_1}>
-                        <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
-                        </Image>
-                        <View>
-                            <Text>{item.title}</Text>
-                            <Text>{item.price}đ</Text>
-                            <Text>{index.quantity} sản phẩm có sẵn</Text>
+                        <View style={styless.item_1}>
+                            <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
+                            </Image>
+                            <View style={styless.item_view}>
+                                <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
+                                <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
+                            </View>
+                        </View>
+                        <View style={styless.icon_view}>
+                            <View style={styless.iconAdd}>
+                                <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                </Image>
+                            </View>
                         </View>
                     </View>
-                    <View style={styless.iconAdd}>
-                        <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>   
-                        </Image>
-                    </View>
-                </View>
                 )}
             />
         </View>
+        <View>
+            <View>
 
-        {/* <Image style={styless.CategoryListItemImage} source={require('../assets/images/iconc.png')} /> */}
+
+            </View>
+        </View>
     </View >
 }
 
@@ -79,10 +91,10 @@ const styless = StyleSheet.create({
         alignContent: "center"
     },
     TextHeader: {
+        fontFamily: 'NuniSans',
         alignItems: "center",
         justifyContent: "center",
         alignContent: "center",
-        fontFamily: 'Cursive',
         fontSize: 40,
         fontWeight: "600",
         color: '#FFFFFF'
@@ -91,9 +103,22 @@ const styless = StyleSheet.create({
         width: 64,
         height: 64,
     },
+    text_item: {
+        fontFamily: "Roboto"
+    },
+    price_item: {
+        color: '#BE5B00',
+
+    },
+    name_item: {
+        color: '#424242',
+    },
+    quantity_item: {
+        color: '#B2B2B2',
+    },
     title: {
         color: '#EE5460',
-        fontFamily: 'Cursive',
+        fontFamily: 'NuniSans',
         fontSize: 15,
         textTransform: "uppercase",
         marginBottom: 8,
@@ -102,6 +127,9 @@ const styless = StyleSheet.create({
         alignItems: "center"
     },
     logo: {
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
         backgroundColor: '#FF862E',
         width: 100,
         height: 100,
@@ -110,14 +138,17 @@ const styless = StyleSheet.create({
         marginTop: 25
     },
     drink: {
+        flex: 4,
         paddingLeft: 20,
         width: '100%'
     },
     food: {
-        paddingLeft: 10,
+        flex: 4,
+        paddingLeft: 20,
         width: '100%'
     },
     item: {
+        paddingBottom: 20,
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between"
@@ -144,12 +175,29 @@ const styless = StyleSheet.create({
     item_1: {
         flexDirection: 'row',
         flexWrap: "wrap"
+    },
+    item_view: {
+        justifyContent: "space-around"
+    },
+    icon_view: {
+        justifyContent: "center",
+        height: "100%"
+    },
+    avatarHeader: {
+        width: 60,
+        height: 60,
+        // borderRadius: 100
     }
-
-
 });
 
 const datas = [
+    {
+        id: 1,
+        title: "Sữa chua dâu",
+        type: "1",
+        price: 15000,
+        quantity: 3
+    },
     {
         id: 1,
         title: "Sữa chua dâu",
