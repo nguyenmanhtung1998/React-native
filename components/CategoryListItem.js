@@ -76,16 +76,12 @@ export default function CategoryListItem(props) {
             />
             </View>
         </View>
-<<<<<<< HEAD
-        {/* <Image style={styless.CategoryListItemImage} source={require('../assets/images/iconc.png')} /> */}
-=======
         <View>
             <View>
 
 
             </View>
         </View>
->>>>>>> d0b0ea3f9dc0e5efc7c38e3c5b91ec1bdd62f32e
     </View >
 }
 
@@ -184,12 +180,6 @@ const styless = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: "wrap"
     },
-<<<<<<< HEAD
-    food_view: {
-        height : "70%"
-    }
-
-=======
     item_view: {
         justifyContent: "space-around"
     },
@@ -202,7 +192,6 @@ const styless = StyleSheet.create({
         height: 60,
         // borderRadius: 100
     }
->>>>>>> d0b0ea3f9dc0e5efc7c38e3c5b91ec1bdd62f32e
 });
 
 const datas = [
