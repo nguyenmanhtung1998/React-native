@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Image, StyleSheet } from "react-native";
+import { Button, FlatList, Image, StyleSheet } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
 import favicom from "../assets/images/icon.png";
@@ -21,70 +21,95 @@ export default function CategoryListItem(props) {
                 Đồ uống
             </Text>
             <View style={styless.food_view}>
-            <FlatList
-                data={datas}
-                renderItem={({ item, index, separators }) => (
-                    <View style={styless.item}>
-                        <View style={styless.item_1}>
-                            <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
-                            </Image>
-                            <View style={styless.item_view}>
-                                <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
-                                <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
-                                <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
-                            </View>
-                        </View>
-
-                        <View style={styless.icon_view}>
-                            <View style={styless.iconAdd}>
-                                <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                <FlatList
+                    data={datas}
+                    renderItem={({ item, index, separators }) => (
+                        <View style={styless.item}>
+                            <View style={styless.item_1}>
+                                <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
                                 </Image>
+                                <View style={styless.item_view}>
+                                    <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                    <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
+                                    <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
+                                </View>
+                            </View>
+
+                            <View style={styless.icon_view}>
+                                <View style={styless.iconAdd}>
+                                    <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                    </Image>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                )}
-            />
+                    )}
+                />
             </View>
-            
+
         </View>
         <View style={styless.food}>
             <Text style={styless.title}>
                 Đồ ăn
             </Text>
-            <View style = {styless.food_view}>
-            <FlatList
-                data={datas}
-                renderItem={({ item, index, separators }) => (
-                    <View style={styless.item}>
-                        <View style={styless.item_1}>
-                            <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
-                            </Image>
-                            <View style={styless.item_view}>
-                                <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
-                                <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
-                                <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
-                            </View>
-                        </View>
-                        <View style={styless.icon_view}>
-                            <View style={styless.iconAdd}>
-                                <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+            <View style={styless.food_view}>
+                <FlatList
+                    data={datas}
+                    renderItem={({ item, index, separators }) => (
+                        <View style={styless.item}>
+                            <View style={styless.item_1}>
+                                <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
                                 </Image>
+                                <View style={styless.item_view}>
+                                    <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                    <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
+                                    <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
+                                </View>
+                            </View>
+                            <View style={styless.icon_view}>
+                                <View style={styless.iconAdd}>
+                                    <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                    </Image>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                )}
-            />
+                    )}
+                />
             </View>
         </View>
-        <View>
+        <View style={styless.view_payment}>
+            <View style={styless.view_cart}>
+                <View>
+                    <View style={styless.cart}>
+                        <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
+                        </Image>
+                    </View>
+                    <View>
+
+                    </View>
+                </View>
+                <View>
+                    <Text>
+                        2700000 đ
+                    </Text>
+                </View>
+            </View>
             <View>
-
-
+                <Button
+                    title="Thanh toán"
+                    buttonStyle={{
+                        backgroundColor: 'rgba(111, 202, 186, 1)',
+                        borderRadius: 400,
+                    }}
+                    containerStyle={{
+                        width: 200,
+                        marginHorizontal: 50,
+                        marginVertical: 10,
+                    }}
+                />
             </View>
         </View>
     </View >
 }
-
 const styless = StyleSheet.create({
     header: {
         backgroundColor: '#FF862E',
@@ -191,6 +216,33 @@ const styless = StyleSheet.create({
         width: 60,
         height: 60,
         // borderRadius: 100
+    },
+
+    button: {
+        color: "#FF862E",
+        borderRadius: 20
+    },
+    cart: {
+        backgroundColor: 'rgba(255, 134, 46, 1)',
+        width: 76,
+        height: 76,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    iconCart: {
+        width: 40,
+        height: 40
+    },
+    view_payment: {
+        paddingLeft:20,
+        paddingRight:20,
+        width:"100%",
+        justifyContent:"space-between",
+        flexDirection: "row"
+    },
+    view_cart:{
+        flexDirection:"row"
     }
 });
 
@@ -231,3 +283,6 @@ const datas = [
         quantity: 3
     }
 ]
+const payment = {
+
+}
