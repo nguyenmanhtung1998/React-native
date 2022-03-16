@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, FlatList, Image, StyleSheet } from "react-native";
+import { Button, FlatList, Image, StyleSheet,TouchableOpacity } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
 import favicom from "../assets/images/icon.png";
@@ -80,32 +80,44 @@ export default function CategoryListItem(props) {
             <View style={styless.view_cart}>
                 <View>
                     <View style={styless.cart}>
+                        <View style={{
+                            position: "absolute",
+                            top: 0,
+                            right: 0,
+                            width: 20,
+                            height: 20,
+                            borderRadius: 100,
+                            backgroundColor: "#0C41CB",
+                            justifyContent: "center",
+                            alignItems:"center"
+                    }}>
+                            <Text style={{
+                            color:"#FFFFFF"
+                        }}>
+                        0
+                    </Text>
+                        </View>
                         <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
                         </Image>
                     </View>
-                    <View>
-
-                    </View>
+                    {/* <View>
+                        <Text>
+                            0
+                        </Text>
+                    </View> */}
                 </View>
-                <View>
-                    <Text>
+                <View style = {styless.price_items}>
+                    <Text style = {styless.txt_price_items}>
                         2700000 đ
                     </Text>
                 </View>
             </View>
-            <View>
-                <Button
-                    title="Thanh toán"
-                    buttonStyle={{
-                        backgroundColor: 'rgba(111, 202, 186, 1)',
-                        borderRadius: 400,
-                    }}
-                    containerStyle={{
-                        width: 200,
-                        marginHorizontal: 50,
-                        marginVertical: 10,
-                    }}
-                />
+            <View style = {styless.button}>
+                <TouchableOpacity onPress={() => {}}> 
+                    <Text style = {styless.textPayment}>
+                        Thanh toán
+                    </Text>
+            </TouchableOpacity>
             </View>
         </View>
     </View >
@@ -219,30 +231,57 @@ const styless = StyleSheet.create({
     },
 
     button: {
-        color: "#FF862E",
-        borderRadius: 20
+        color: "while",
+        borderRadius: 4,
+        backgroundColor: "#FF862E",
+        height: 50,
+        width: 150,
+        justifyContent: "center",
+        alignItems:"center"
     },
     cart: {
         backgroundColor: 'rgba(255, 134, 46, 1)',
-        width: 76,
-        height: 76,
+        width: 50,
+        height: 50,
         borderRadius: 10,
         justifyContent: "center",
         alignItems: "center"
     },
     iconCart: {
-        width: 40,
-        height: 40
+        width: 30,
+        height: 30
     },
     view_payment: {
-        paddingLeft:20,
-        paddingRight:20,
+        // borderTopWidth: 2,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.46,
+        shadowRadius: 11.14,
+        elevation: 17,
+        padding:20,
         width:"100%",
         justifyContent:"space-between",
         flexDirection: "row"
     },
     view_cart:{
-        flexDirection:"row"
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent:"space-between"
+    },
+    textPayment: {
+        color: "#FFFFFF",
+        fontSize: 18,
+    },
+    price_items: {
+        color:"#797979",
+    },
+    txt_price_items: {
+        paddingLeft: 20,
+        fontSize:18
     }
 });
 
