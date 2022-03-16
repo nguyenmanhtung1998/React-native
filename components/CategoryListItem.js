@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, FlatList, Image, StyleSheet,TouchableOpacity } from "react-native";
+import { Button, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
 import favicom from "../assets/images/icon.png";
@@ -78,46 +78,40 @@ export default function CategoryListItem(props) {
         </View>
         <View style={styless.view_payment}>
             <View style={styless.view_cart}>
-                <View>
-                    <View style={styless.cart}>
-                        <View style={{
-                            position: "absolute",
-                            top: 0,
-                            right: 0,
-                            width: 20,
-                            height: 20,
-                            borderRadius: 100,
-                            backgroundColor: "#0C41CB",
-                            justifyContent: "center",
-                            alignItems:"center"
+                <View style={{ height: "100%" }}>
+                    <View style={{
+                        position: "absolute",
+                        top: 0,
+                        zIndex: 1000,
+                        right: 0,
+                        width: 20,
+                        height: 20,
+                        borderRadius: 100,
+                        backgroundColor: "#0C41CB",
+                        justifyContent: "center",
+                        alignItems: "center"
                     }}>
-                            <Text style={{
-                            color:"#FFFFFF"
-                        }}>
-                        0
-                    </Text>
-                        </View>
+                        <Text style={{ color: "#FFFFFF" }}>
+                            0
+                        </Text>
+                    </View>
+                    <View style={styless.cart}>
                         <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
                         </Image>
                     </View>
-                    {/* <View>
-                        <Text>
-                            0
-                        </Text>
-                    </View> */}
                 </View>
-                <View style = {styless.price_items}>
-                    <Text style = {styless.txt_price_items}>
+                <View style={styless.price_items}>
+                    <Text style={styless.txt_price_items}>
                         2700000 đ
                     </Text>
                 </View>
             </View>
-            <View style = {styless.button}>
-                <TouchableOpacity onPress={() => {}}> 
-                    <Text style = {styless.textPayment}>
+            <View style={styless.button}>
+                <TouchableOpacity onPress={() => { }}>
+                    <Text style={styless.textPayment}>
                         Thanh toán
                     </Text>
-            </TouchableOpacity>
+                </TouchableOpacity>
             </View>
         </View>
     </View >
@@ -237,9 +231,11 @@ const styless = StyleSheet.create({
         height: 50,
         width: 150,
         justifyContent: "center",
-        alignItems:"center"
+        alignItems: "center"
     },
     cart: {
+        marginTop: 5,
+        marginRight: 5,
         backgroundColor: 'rgba(255, 134, 46, 1)',
         width: 50,
         height: 50,
@@ -261,27 +257,27 @@ const styless = StyleSheet.create({
         shadowOpacity: 0.46,
         shadowRadius: 11.14,
         elevation: 17,
-        padding:20,
-        width:"100%",
-        justifyContent:"space-between",
+        padding: 20,
+        width: "100%",
+        justifyContent: "space-between",
         flexDirection: "row"
     },
-    view_cart:{
+    view_cart: {
         flexDirection: "row",
         alignContent: "center",
         alignItems: "center",
-        justifyContent:"space-between"
+        justifyContent: "space-between"
     },
     textPayment: {
         color: "#FFFFFF",
         fontSize: 18,
     },
     price_items: {
-        color:"#797979",
+        color: "#797979",
     },
     txt_price_items: {
         paddingLeft: 20,
-        fontSize:18
+        fontSize: 18
     }
 });
 
