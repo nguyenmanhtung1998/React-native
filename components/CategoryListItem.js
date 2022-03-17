@@ -1,11 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
 import favicom from "../assets/images/icon.png";
 import avatarEats from "../assets/images/Group.png"
-
+import axios from 'axios';
 export default function CategoryListItem(props) {
+
+    const [dataViewFood, setData1] = useState({})
+    const [dataViewDrink, setData2] = useState({})
+    const [isCallApi, setData3] = useState(false)
+    const [count, setData4] = useState(0)
+    if (isCallApi == false) {
+        axios.get(`https://622f1e1c3ff58f023c1671a7.mockapi.io/api/v1/menu`).then((response) => {
+            console.log(response)
+            var listDrink = [];
+            var listFood = [];
+            response.data.forEach(element => {
+                if (element.type == 1) {
+                    listDrink.push(element);
+                } else {
+                    listFood.push(element)
+                }
+            });
+            setData1(listDrink);
+            setData2(listFood);
+            setData3(true);
+        });
+    }
+    // const renderElement(){
+    //     if(this.state.value == 'news'){
+    //         return(
+    //             <View style={styless.view_payment}>
+    //             <View style={styless.view_cart}>
+    //                 <View style={{ height: "100%" }}>
+    //                     <View style={{
+    //                         position: "absolute",
+    //                         top: 0,
+    //                         zIndex: 1000,
+    //                         right: 0,
+    //                         width: 20,
+    //                         height: 20,
+    //                         borderRadius: 100,
+    //                         backgroundColor: "#0C41CB",
+    //                         justifyContent: "center",
+    //                         alignItems: "center"
+    //                     }}>
+    //                         <Text style={{ color: "#FFFFFF" }}>
+    //                             {count}
+    //                         </Text>
+    //                     </View>
+    //                     <View style={styless.cart}>
+    //                         <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
+    //                         </Image>
+    //                     </View>
+    //                 </View>
+    //                 <View style={styless.price_items}>
+    //                     <Text style={styless.txt_price_items}>
+    //                         2700000 đ
+    //                     </Text>
+    //                 </View>
+    //             </View>
+    //             <View style={styless.button}>
+    //                 <TouchableOpacity onPress={() => {
+    
+    //                 }}>
+    //                     <Text style={styless.textPayment}>
+    //                         Thanh toán
+    //                     </Text>
+    //                 </TouchableOpacity>
+    //             </View>
+    //         </View>
+    //         )
+    //     }
+    //     return null;
+    //  }
+
     return <View style={styless.container}>
         <View style={styless.header}>
             <Text style={styless.TextHeader}>
@@ -22,30 +92,32 @@ export default function CategoryListItem(props) {
             </Text>
             <View style={styless.food_view}>
                 <FlatList
-                    data={datas}
+                    data={dataViewDrink}
                     renderItem={({ item, index, separators }) => (
                         <View style={styless.item}>
                             <View style={styless.item_1}>
                                 <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
                                 </Image>
                                 <View style={styless.item_view}>
-                                    <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                    <Text style={[styless.text_item, styless.name_item]}>{item.name}</Text>
                                     <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
                                     <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
                                 </View>
                             </View>
-
-                            <View style={styless.icon_view}>
-                                <View style={styless.iconAdd}>
-                                    <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
-                                    </Image>
+                            <TouchableOpacity onPress={() => {
+                                setData4(count + 1)
+                            }}>
+                                <View style={styless.icon_view} >
+                                    <View style={styless.iconAdd}>
+                                        <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                        </Image>
+                                    </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     )}
                 />
             </View>
-
         </View>
         <View style={styless.food}>
             <Text style={styless.title}>
@@ -53,24 +125,28 @@ export default function CategoryListItem(props) {
             </Text>
             <View style={styless.food_view}>
                 <FlatList
-                    data={datas}
+                    data={dataViewFood}
                     renderItem={({ item, index, separators }) => (
                         <View style={styless.item}>
                             <View style={styless.item_1}>
                                 <Image source={require('../assets/images/milk.png')} style={styless.avatarEat}>
                                 </Image>
                                 <View style={styless.item_view}>
-                                    <Text style={[styless.text_item, styless.name_item]}>{item.title}</Text>
+                                    <Text style={[styless.text_item, styless.name_item]}>{item.name}</Text>
                                     <Text style={[styless.text_item, styless.price_item]}>{item.price}đ</Text>
                                     <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
                                 </View>
                             </View>
-                            <View style={styless.icon_view}>
-                                <View style={styless.iconAdd}>
-                                    <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
-                                    </Image>
+                            <TouchableOpacity onPress={() => {
+                                setData4(count + 1)
+                            }}>
+                                <View style={styless.icon_view}>
+                                    <View style={styless.iconAdd}>
+                                        <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
+                                        </Image>
+                                    </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     )}
                 />
@@ -92,7 +168,7 @@ export default function CategoryListItem(props) {
                         alignItems: "center"
                     }}>
                         <Text style={{ color: "#FFFFFF" }}>
-                            0
+                            {count}
                         </Text>
                     </View>
                     <View style={styless.cart}>
@@ -107,7 +183,9 @@ export default function CategoryListItem(props) {
                 </View>
             </View>
             <View style={styless.button}>
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => {
+
+                }}>
                     <Text style={styless.textPayment}>
                         Thanh toán
                     </Text>
@@ -281,43 +359,6 @@ const styless = StyleSheet.create({
     }
 });
 
-const datas = [
-    {
-        id: 1,
-        title: "Sữa chua dâu",
-        type: "1",
-        price: 15000,
-        quantity: 3
-    },
-    {
-        id: 1,
-        title: "Sữa chua dâu",
-        type: "1",
-        price: 15000,
-        quantity: 3
-    },
-    {
-        id: 1,
-        title: "Nước giải khát",
-        type: "1",
-        price: 15000,
-        quantity: 3
-    },
-    {
-        id: 1,
-        title: "Sinh tố cam",
-        type: "1",
-        price: 15000,
-        quantity: 3
-    },
-    {
-        id: 1,
-        title: "Sinh tố dưa hấu",
-        type: "1",
-        price: 15000,
-        quantity: 3
-    }
-]
 const payment = {
 
 }
