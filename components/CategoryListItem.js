@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "./Themed";
 import { View } from "./Themed";
 import favicom from "../assets/images/icon.png";
 import avatarEats from "../assets/images/Group.png"
 import axios from 'axios';
+import Payment from './Payment.js';
 export default function CategoryListItem(props) {
 
     const [dataViewFood, setData1] = useState({})
     const [dataViewDrink, setData2] = useState({})
     const [isCallApi, setData3] = useState(false)
     const [count, setData4] = useState(0)
-    if (isCallApi == false) {
+
+    useEffect(() => {
         axios.get(`https://622f1e1c3ff58f023c1671a7.mockapi.io/api/v1/menu`).then((response) => {
-            console.log(response)
+            // console.log(response)
             var listDrink = [];
             var listFood = [];
             response.data.forEach(element => {
@@ -27,55 +29,7 @@ export default function CategoryListItem(props) {
             setData2(listFood);
             setData3(true);
         });
-    }
-    // const renderElement(){
-    //     if(this.state.value == 'news'){
-    //         return(
-    //             <View style={styless.view_payment}>
-    //             <View style={styless.view_cart}>
-    //                 <View style={{ height: "100%" }}>
-    //                     <View style={{
-    //                         position: "absolute",
-    //                         top: 0,
-    //                         zIndex: 1000,
-    //                         right: 0,
-    //                         width: 20,
-    //                         height: 20,
-    //                         borderRadius: 100,
-    //                         backgroundColor: "#0C41CB",
-    //                         justifyContent: "center",
-    //                         alignItems: "center"
-    //                     }}>
-    //                         <Text style={{ color: "#FFFFFF" }}>
-    //                             {count}
-    //                         </Text>
-    //                     </View>
-    //                     <View style={styless.cart}>
-    //                         <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
-    //                         </Image>
-    //                     </View>
-    //                 </View>
-    //                 <View style={styless.price_items}>
-    //                     <Text style={styless.txt_price_items}>
-    //                         2700000 đ
-    //                     </Text>
-    //                 </View>
-    //             </View>
-    //             <View style={styless.button}>
-    //                 <TouchableOpacity onPress={() => {
-    
-    //                 }}>
-    //                     <Text style={styless.textPayment}>
-    //                         Thanh toán
-    //                     </Text>
-    //                 </TouchableOpacity>
-    //             </View>
-    //         </View>
-    //         )
-    //     }
-    //     return null;
-    //  }
-
+    }, []);
     return <View style={styless.container}>
         <View style={styless.header}>
             <Text style={styless.TextHeader}>
@@ -86,6 +40,7 @@ export default function CategoryListItem(props) {
             <Image source={avatarEats} style={styless.avatarHeader}>
             </Image>
         </View>
+
         <View style={styless.drink}>
             <Text style={styless.title}>
                 Đồ uống
@@ -152,46 +107,7 @@ export default function CategoryListItem(props) {
                 />
             </View>
         </View>
-        <View style={styless.view_payment}>
-            <View style={styless.view_cart}>
-                <View style={{ height: "100%" }}>
-                    <View style={{
-                        position: "absolute",
-                        top: 0,
-                        zIndex: 1000,
-                        right: 0,
-                        width: 20,
-                        height: 20,
-                        borderRadius: 100,
-                        backgroundColor: "#0C41CB",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}>
-                        <Text style={{ color: "#FFFFFF" }}>
-                            {count}
-                        </Text>
-                    </View>
-                    <View style={styless.cart}>
-                        <Image source={require('../assets/images/Vector.png')} style={styless.iconCart}>
-                        </Image>
-                    </View>
-                </View>
-                <View style={styless.price_items}>
-                    <Text style={styless.txt_price_items}>
-                        2700000 đ
-                    </Text>
-                </View>
-            </View>
-            <View style={styless.button}>
-                <TouchableOpacity onPress={() => {
-
-                }}>
-                    <Text style={styless.textPayment}>
-                        Thanh toán
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+        <Payment quantity={count} />
     </View >
 }
 const styless = StyleSheet.create({
@@ -303,7 +219,7 @@ const styless = StyleSheet.create({
     },
 
     button: {
-        color: "while",
+        color: "#ffff",
         borderRadius: 4,
         backgroundColor: "#FF862E",
         height: 50,
@@ -358,7 +274,3 @@ const styless = StyleSheet.create({
         fontSize: 18
     }
 });
-
-const payment = {
-
-}
