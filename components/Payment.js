@@ -6,6 +6,7 @@ import favicom from "../assets/images/icon.png";
 import avatarEats from "../assets/images/Group.png"
 import axios from 'axios';
 export default function CategoryListItem(props) {
+    console.log(props)
     if (props.quantity <= 0) {
         return null;
     } else {
@@ -36,7 +37,7 @@ export default function CategoryListItem(props) {
                     </View>
                     <View style={styless.price_items}>
                         <Text style={styless.txt_price_items}>
-                            2700000 đ
+                            {props.price} đ
                         </Text>
                     </View>
                 </View>
@@ -78,6 +79,8 @@ const styless = StyleSheet.create({
         height: 30
     },
     view_payment: {
+        // position:"absolute",
+        // bottom:0,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

@@ -10,8 +10,8 @@ export default function CategoryListItem(props) {
 
     const [dataViewFood, setData1] = useState({})
     const [dataViewDrink, setData2] = useState({})
-    const [isCallApi, setData3] = useState(false)
     const [count, setData4] = useState(0)
+    const [price, setPrice] = useState(0)
 
     useEffect(() => {
         axios.get(`https://622f1e1c3ff58f023c1671a7.mockapi.io/api/v1/menu`).then((response) => {
@@ -27,9 +27,14 @@ export default function CategoryListItem(props) {
             });
             setData1(listDrink);
             setData2(listFood);
-            setData3(true);
         });
     }, []);
+    const onClick = (_item) => {
+        console.log(_item);
+        setPrice(price + _item.price);
+        setData4(count + 1);
+
+    }
     return <View style={styless.container}>
         <View style={styless.header}>
             <Text style={styless.TextHeader}>
@@ -59,9 +64,7 @@ export default function CategoryListItem(props) {
                                     <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
                                 </View>
                             </View>
-                            <TouchableOpacity onPress={() => {
-                                setData4(count + 1)
-                            }}>
+                            <TouchableOpacity onPress={() => onClick(item)}>
                                 <View style={styless.icon_view} >
                                     <View style={styless.iconAdd}>
                                         <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
@@ -92,9 +95,7 @@ export default function CategoryListItem(props) {
                                     <Text style={[styless.text_item, styless.quantity_item]}>{item.quantity} sản phẩm có sẵn</Text>
                                 </View>
                             </View>
-                            <TouchableOpacity onPress={() => {
-                                setData4(count + 1)
-                            }}>
+                            <TouchableOpacity onPress={() => onClick(item)}>
                                 <View style={styless.icon_view}>
                                     <View style={styless.iconAdd}>
                                         <Image source={require('../assets/images/add.png')} style={styless.iconAdd_i}>
@@ -107,7 +108,7 @@ export default function CategoryListItem(props) {
                 />
             </View>
         </View>
-        <Payment quantity={count} />
+        <Payment quantity={count} price={price} />
     </View >
 }
 const styless = StyleSheet.create({
